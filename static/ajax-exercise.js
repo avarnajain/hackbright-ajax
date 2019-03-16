@@ -24,10 +24,10 @@ function showWeather(evt) {
     evt.preventDefault();
 
     let url = "/weather.json";
-    let formData = {"zipcode": $("#zipcode-field").val()};
+    let formSerialized = $('#weather-form').serialize();
 
     // TODO: request weather with that URL and show the forecast in #weather-info
-    $.get(url, formData, (results) => {
+    $.get(url, formSerialized, (results) => {
       const forecast = results['forecast'];
 
       $('#weather-info').html(forecast);
@@ -46,10 +46,7 @@ function orderMelons(evt) {
 
     // TODO: show the result message after your form
     let url = "/order-melons.json"
-    let formData = {
-      "melon_type": $("#melon-type-field").val(),
-      "qty": $("#qty-field").val()
-    };
+    let formData = $('#order-form').serialize();
     // TODO: if the result code is ERROR, make it show up in red (see our CSS!)
     $.post(url, formData, (results) => {
       const code = results['code'];
